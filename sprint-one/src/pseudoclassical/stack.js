@@ -21,7 +21,7 @@ Stack.prototype.size = function() {
   if (this.count < 0) {
     return 0;
   }
-    return this.count;
+  return this.count;
 };
 
 var Plates = new Stack();
