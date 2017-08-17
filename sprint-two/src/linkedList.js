@@ -16,8 +16,8 @@ var LinkedList = function() {
       this.tail = Node(nodeValue);
       this.head.next = this.tail;
     }
-    console.log(JSON.stringify(list));
-    console.log('Head value = ' + list.head.value);
+    // console.log(JSON.stringify(list));
+    // console.log('Head value = ' + list.head.value);
 
     //else add node to the tail
   };
@@ -30,8 +30,8 @@ var LinkedList = function() {
       // delete head
     }
     var headValue = this.head.value;
-    console.log('List when remove head' + JSON.stringify(list));
-    console.log('Head value = ' + list.head.value);
+    // console.log('List when remove head' + JSON.stringify(list));
+    // console.log('Head value = ' + list.head.value);
     return headValue;
   };
 
@@ -42,29 +42,24 @@ var LinkedList = function() {
     // Figure out how every key in obj is tested
 
     // recurse through this.head
-    for (var key in this.head) {
-      if (target === this.head.key) {
-        return true;
+
+    var targetFound = false;
+    var checkValue = function (node, target) {
+      var tar = target;
+      for (var key in node) {
+        //console.log('this is key: ' + key + '\nthis is node :' + JSON.stringify(node));
+        if (node.value === tar) {
+          targetFound = true;
+        }
+        if (key === 'next' && node.key !== null) {
+          checkValue(node.next, tar);
+        }
       }
-      if (key === 'next' && this.key !== undefined) {
-        this.key.contains(target);
-      }
-    }
+    };
     
-    return false;
+    checkValue(this.head, target);
+    return targetFound;
 
-
-    // for (var key in list) {
-    //   //console.log(list.value);
-    //   if (key === 'head') {
-    //     if (target === this.value) {
-    //       return true;
-    //     }
-    //     if (key === 'next' && this.key !== undefined) {
-    //       this.key.contains(target);
-    //     }
-    //   }
-    // }
     // iterate through the key 'value' of the head and the children
       // check if target value is there
   };
