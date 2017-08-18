@@ -9,7 +9,7 @@ var Graph = function() {
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
   this.nodeStorage.push(node);
-  console.log('These are the nodes \n' + JSON.stringify(this.nodeStorage));
+  //console.log('These are the nodes \n' + JSON.stringify(this.nodeStorage));
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -31,11 +31,11 @@ Graph.prototype.removeNode = function(node) {
   //iterate through 'edges' array and find if the node is in any of the tuples
     //if in a tuple
       //splice the tuple out 
-  console.log('This are nodes after removing ' + node + ': ' + JSON.stringify(this.nodeStorage));
-  console.log('This are edges after removing ' + node + ': ' + JSON.stringify(this.edges));
+  //console.log('This are nodes after removing ' + node + ': ' + JSON.stringify(this.nodeStorage));
+  //console.log('This are edges after removing ' + node + ': ' + JSON.stringify(this.edges));
   var index = 0;
   this.edges.forEach(function (tuple) {
-    console.log('this is the tuple: ' + JSON.stringify(tuple));
+    //console.log('this is the tuple: ' + JSON.stringify(tuple));
     for (var i = 0; i < tuple.length; i++) {
       if (tuple[i] === node) {
         index = tuple.indexOf();
@@ -62,7 +62,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 Graph.prototype.addEdge = function(fromNode, toNode) {
   this.edges.push([fromNode, toNode]);
 
-  console.log('These are the edges \n' + JSON.stringify(this.edges));
+  //console.log('These are the edges \n' + JSON.stringify(this.edges));
 };
 
 // Remove an edge between any two specified (by value) nodes.
