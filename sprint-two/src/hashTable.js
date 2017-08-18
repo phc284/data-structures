@@ -7,7 +7,6 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  //var bucket = this._storage.get(index);
   var emptyBucket = [];
   if (this._storage.get(index) === undefined) {
     console.log('insert with no index');
@@ -23,12 +22,25 @@ HashTable.prototype.insert = function(k, v) {
         bucket.push([k, v]);
       }
     }
-    console.log('this is bucket\n' + JSON.stringify(bucket) + '\n' + 'this is this._storage\n' + JSON.stringify(this._storage.get(index)));
   }
 
+  //// WORKING ON REFACTORING BELOW ////
+  // var index = getIndexBelowMaxForKey(k, this._limit);
+  // //var bucket = this._storage.get(index);
+  // var bucket = this._storage.set(index, []) || this._storage.get(index);
 
-  
-    console.log('this is bucket\n' + JSON.stringify(bucket) + '\n' + 'this is this._storage\n' + JSON.stringify(this._storage.get(index)));
+  //   //overwrite value if key is the same
+  // for (var tuple = 0; tuple <= bucket.length; tuple++) {
+  //   console.log('hi');
+  //   if (bucket[tuple][0] === k) {
+  //     bucket[tuple][1] = v;
+  //   } else {
+  //     bucket.push([k, v]);
+  //   }
+  //   console.log(JSON.stringify(bucket));
+  // }
+
+
    // if line 10 returns nothing, then set a bucket array at that index
   // set a new bucket array, push tuple [k, v] into bucket
   // else if it is there, then push tuple [k, v] into bucket
