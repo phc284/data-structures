@@ -27,6 +27,23 @@ Graph.prototype.removeNode = function(node) {
   if (this.nodeStorage.indexOf(node) !== -1) { 
     this.nodeStorage.splice(this.nodeStorage.indexOf(node), 1);
   }
+  //remove edges of the nodes we removed
+  //iterate through 'edges' array and find if the node is in any of the tuples
+    //if in a tuple
+      //splice the tuple out 
+  console.log('This are nodes after removing ' + node + ': ' + JSON.stringify(this.nodeStorage));
+  console.log('This are edges after removing ' + node + ': ' + JSON.stringify(this.edges));
+  var index = 0;
+  this.edges.forEach(function (tuple) {
+    console.log('this is the tuple: ' + JSON.stringify(tuple));
+    for (var i = 0; i < tuple.length; i++) {
+      if (tuple[i] === node) {
+        index = tuple.indexOf();
+      }
+    }
+  });
+
+  this.edges.splice(index, 1);
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -44,25 +61,33 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
   this.edges.push([fromNode, toNode]);
-  this.edges.push([toNode, fromNode]);
 
   console.log('These are the edges \n' + JSON.stringify(this.edges));
 };
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-  var edge1 = JSON.stringify([fromNode, toNode]);
-  var edge2 = JSON.stringify([toNode, fromNode]);
-  for (var i = 0; i < this.edges.length; i++) {
-    if (JSON.stringify(this.edges[i]) === edge1 || JSON.stringify(this.edges[i]) === edge2) { 
-      this.edges.splice(i, 1);
+  //iterate through edges array
+    //iterate through each tuple inside array 
+    //or stringify item in edges array and compare it to a stringified [fromNode, toNode]
+      //find if fromNode and toNode are in the array
+        //splice it from this.edges
+
+  var indexOfEdge = this.edges.reduce(function(acc, item) {
+    if (item[0] === fromNode || item[0] === toNode) {
+      if (item[1] === fromNode || item[1] === toNode) {
+        acc = item.indexOf();
+      }
     }
-  }
+    return acc;
+  }, -1);
+
+  this.edges.splice(indexOfEdge, 1);
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  for (var i = 0; i < this.nodeStorage; i++) {
+  for (var i = 0; i < this.nodeStorage.length; i++) {
     cb(this.nodeStorage[i]);
   }
 };
