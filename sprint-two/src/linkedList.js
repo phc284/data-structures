@@ -4,66 +4,62 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
+    //declare new variable for the input value
     var nodeValue = value;
-    //if list is empty
+    //if there is no head (means there is nothing in linked list)
     if (this.head === null) {
-      //assign node to head
+      //point the head reference to be a new node with the input value
       this.head = Node(nodeValue);
+      //point the tail reference to the head reference because there is only one node
       this.tail = this.head;
-    } else {
-     // list.tail = Node(nodeValue);
-      //this.next = list.tail;
+    } else {  //else if there is a head reference
+      //tail is now a new node with it's value equaling the input value
       this.tail = Node(nodeValue);
+      //makes the head's next property equal to the new tail
       this.head.next = this.tail;
     }
-    // console.log(JSON.stringify(list));
-    // console.log('Head value = ' + list.head.value);
-
-    //else add node to the tail
   };
 
   list.removeHead = function() {
-    //console.log(JSON.stringify(this.next));
+    //check to see if the list has a head and next value
     if (this.head && this.head.next) {
-      // set head.next to new list.head
+      //repoint head to the next item
       this.head = this.head.next;
-      // delete head
-    }
+    }   
+    // creates a new variable name to refer to the head value 
     var headValue = this.head.value;
-    // console.log('List when remove head' + JSON.stringify(list));
-    // console.log('Head value = ' + list.head.value);
+    //just returns headvalue 
     return headValue;
   };
 
+  //searches to see if list contains the target 
   list.contains = function(target) {
-    // check if target is value of any of keys in any nested objects
-    // if a value is equal to target
-      // return true
-    // Figure out how every key in obj is tested
-
-    // recurse through this.head
-
+    // creates a variable and sets it to false by default
     var targetFound = false;
+    //checks current node for a value equal to target value
     var checkValue = function (node, target) {
-      var tar = target;
+      //sets target to its own variable 
+      var targetValue = target;
+      //iterate through current node
       for (var key in node) {
-        //console.log('this is key: ' + key + '\nthis is node :' + JSON.stringify(node));
-        if (node.value === tar) {
+        //check to see if node value is equal to target
+        if (node.value === targetValue) {
+          //target is changed to true
           targetFound = true;
         }
+        //check to see if key equals next and if there is no node
         if (key === 'next' && node.key !== null) {
-          checkValue(node.next, tar);
+          //recurses checkValue function on next node and target
+          checkValue(node.next, targetValue);
         }
       }
     };
-    
+    //calls the checkValue function to run
     checkValue(this.head, target);
+    //returns if targetFound equals true or false
     return targetFound;
-
-    // iterate through the key 'value' of the head and the children
-      // check if target value is there
   };
-
+  //returns list
   return list;
 };
 
@@ -79,3 +75,5 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+
