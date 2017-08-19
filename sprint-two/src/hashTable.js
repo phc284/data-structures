@@ -9,7 +9,7 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var emptyBucket = [];
   if (this._storage.get(index) === undefined) {
-    console.log('insert with no index');
+    //console.log('insert with no index');
     emptyBucket.push([k, v]);    
     this._storage.set(index, emptyBucket);
   } else {
@@ -26,8 +26,7 @@ HashTable.prototype.insert = function(k, v) {
 
   //// WORKING ON REFACTORING BELOW ////
   // var index = getIndexBelowMaxForKey(k, this._limit);
-  // //var bucket = this._storage.get(index);
-  // var bucket = this._storage.set(index, []) || this._storage.get(index);
+  // var bucket = this._storage.get(index) || this._storage.set(index, []);
 
   //   //overwrite value if key is the same
   // for (var tuple = 0; tuple <= bucket.length; tuple++) {
