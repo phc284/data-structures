@@ -49,6 +49,10 @@ describe('graph', function() {
     graph.addNode(4);
     graph.addNode(5);
     graph.addEdge(5, 4);
+    graph.addNode(6);
+    graph.addNode(7);
+    graph.addEdge(5, 6);
+    graph.addEdge(6, 7);
     expect(graph.hasEdge(4, 5)).to.equal(true);
     graph.removeNode(5);
     expect(graph.hasEdge(4, 5)).to.equal(false);
@@ -67,5 +71,5 @@ describe('graph', function() {
     expect(graph.hasEdge(1, 5)).to.equal(true);
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
-  });
+  }); 
 });

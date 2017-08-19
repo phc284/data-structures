@@ -61,7 +61,7 @@ bstMethods.depthFirstLog = function (cb) {
   var firstTree = this;
   var target = function(node, func) {
     //do callback on each node
-    console.log(typeof func);
+    //console.log(typeof func);
     func(node.value);
     //if left node exists recurse again through left node
     if (node.left !== null) {
